@@ -22,7 +22,7 @@ Optional preinst and postinst script support.
 Output ready-to-install .deb file (dpkg -i myapp.deb).
 
 🚀 Installation (Build from Source)
-git clone https://github.com/yourusername/debforge.git
+git clone https://github.com/sanjh/debforge.git
 cd debforge
 mkdir build && cd build
 cmake ..
@@ -43,7 +43,7 @@ Enter path to binary file: ./bin/myapp
 Enter application name: MyApp
 Enter description: Sample application
 Enter version: 1.0.0
-Enter maintainer (Name <email>): Ankan <ankan@example.com>
+Enter maintainer (Name <email>): Sanjh <sanjhn@example.com>
 Enter license: MIT
 Select architecture [amd64/arm64/i386] (default amd64): amd64
 Enter dependencies (comma-separated, optional): libc6, libssl1.1
@@ -58,7 +58,7 @@ debforge \
   --name MyApp \
   --desc "Sample App" \
   --version 1.0.0 \
-  --maintainer "Ankan <ankan@example.com>" \
+  --maintainer "Sanjh <sanjh@example.com>" \
   --arch amd64 \
   --deps "libc6, libssl1.1" \
   --preinst ./scripts/preinst.sh \
