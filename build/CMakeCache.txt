@@ -148,7 +148,7 @@ CMAKE_PROJECT_DESCRIPTION:STATIC=
 CMAKE_PROJECT_HOMEPAGE_URL:STATIC=
 
 //Value Computed by CMake
-CMAKE_PROJECT_NAME:STATIC=debforge
+CMAKE_PROJECT_NAME:STATIC=simple_deb_packager
 
 //Path to a program.
 CMAKE_RANLIB:FILEPATH=/usr/bin/ranlib
@@ -216,13 +216,13 @@ CMAKE_TAPI:FILEPATH=CMAKE_TAPI-NOTFOUND
 CMAKE_VERBOSE_MAKEFILE:BOOL=FALSE
 
 //Value Computed by CMake
-debforge_BINARY_DIR:STATIC=/workspaces/debforge/build
+simple_deb_packager_BINARY_DIR:STATIC=/workspaces/debforge/build
 
 //Value Computed by CMake
-debforge_IS_TOP_LEVEL:STATIC=ON
+simple_deb_packager_IS_TOP_LEVEL:STATIC=ON
 
 //Value Computed by CMake
-debforge_SOURCE_DIR:STATIC=/workspaces/debforge
+simple_deb_packager_SOURCE_DIR:STATIC=/workspaces/debforge
 
 
 ########################

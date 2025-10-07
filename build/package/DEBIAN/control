@@ -1,0 +1,7 @@
+Package: myapp
+Version: 1.0.0
+Section: base
+Priority: optional
+Architecture: amd64
+Maintainer: Your Name <you@example.com>
+Description: A simple example Debian package created from C++

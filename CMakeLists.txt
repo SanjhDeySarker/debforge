@@ -1,7 +1,5 @@
 cmake_minimum_required(VERSION 3.10)
-project(debforge)
-
+project(simple_deb_packager)
 set(CMAKE_CXX_STANDARD 17)
-set(CMAKE_CXX_STANDARD_REQUIRED True)
 
-add_executable(debforge src/main.cpp)
+add_executable(simple_deb_packager src/main.cpp)

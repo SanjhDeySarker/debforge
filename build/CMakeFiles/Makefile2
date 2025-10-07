@@ -63,7 +63,7 @@ CMAKE_BINARY_DIR = /workspaces/debforge/build
 # Directory level rules for the build root directory
 
 # The main recursive "all" target.
-all: CMakeFiles/debforge.dir/all
+all: CMakeFiles/simple_deb_packager.dir/all
 .PHONY : all
 
 # The main recursive "preinstall" target.
@@ -71,34 +71,34 @@ preinstall:
 .PHONY : preinstall
 
 # The main recursive "clean" target.
-clean: CMakeFiles/debforge.dir/clean
+clean: CMakeFiles/simple_deb_packager.dir/clean
 .PHONY : clean
 
 #=============================================================================
-# Target rules for target CMakeFiles/debforge.dir
+# Target rules for target CMakeFiles/simple_deb_packager.dir
 
 # All Build rule for target.
-CMakeFiles/debforge.dir/all:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/debforge.dir/build.make CMakeFiles/debforge.dir/depend
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/debforge.dir/build.make CMakeFiles/debforge.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/workspaces/debforge/build/CMakeFiles --progress-num=1,2 "Built target debforge"
-.PHONY : CMakeFiles/debforge.dir/all
+CMakeFiles/simple_deb_packager.dir/all:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/simple_deb_packager.dir/build.make CMakeFiles/simple_deb_packager.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/simple_deb_packager.dir/build.make CMakeFiles/simple_deb_packager.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/workspaces/debforge/build/CMakeFiles --progress-num=1,2 "Built target simple_deb_packager"
+.PHONY : CMakeFiles/simple_deb_packager.dir/all
 
 # Build rule for subdir invocation for target.
-CMakeFiles/debforge.dir/rule: cmake_check_build_system
+CMakeFiles/simple_deb_packager.dir/rule: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start /workspaces/debforge/build/CMakeFiles 2
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/debforge.dir/all
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/simple_deb_packager.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /workspaces/debforge/build/CMakeFiles 0
-.PHONY : CMakeFiles/debforge.dir/rule
+.PHONY : CMakeFiles/simple_deb_packager.dir/rule
 
 # Convenience name for target.
-debforge: CMakeFiles/debforge.dir/rule
-.PHONY : debforge
+simple_deb_packager: CMakeFiles/simple_deb_packager.dir/rule
+.PHONY : simple_deb_packager
 
 # clean rule for target.
-CMakeFiles/debforge.dir/clean:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/debforge.dir/build.make CMakeFiles/debforge.dir/clean
-.PHONY : CMakeFiles/debforge.dir/clean
+CMakeFiles/simple_deb_packager.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/simple_deb_packager.dir/build.make CMakeFiles/simple_deb_packager.dir/clean
+.PHONY : CMakeFiles/simple_deb_packager.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.

@@ -8,7 +8,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/workspaces/debforge/src/main.cpp" "CMakeFiles/debforge.dir/src/main.cpp.o" "gcc" "CMakeFiles/debforge.dir/src/main.cpp.o.d"
+  "/workspaces/debforge/src/main.cpp" "CMakeFiles/simple_deb_packager.dir/src/main.cpp.o" "gcc" "CMakeFiles/simple_deb_packager.dir/src/main.cpp.o.d"
   )
 
 # Targets to which this target links which contain Fortran sources.

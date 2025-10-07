@@ -1,3 +1,3 @@
-/workspaces/debforge/build/CMakeFiles/debforge.dir
+/workspaces/debforge/build/CMakeFiles/simple_deb_packager.dir
 /workspaces/debforge/build/CMakeFiles/edit_cache.dir
 /workspaces/debforge/build/CMakeFiles/rebuild_cache.dir
