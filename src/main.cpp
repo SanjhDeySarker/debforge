@@ -104,7 +104,6 @@ int main() {
     getline(cin, description);
 
     // Step 4: Architecture
-    cout << "Select architecture (interactive menu, Enter to auto-detect):\n";
     int archIndex = selectOption(archOptions, "Choose architecture:");
     string systemArch = getSystemArch();
     string architecture = archOptions[archIndex].empty() ? systemArch : archOptions[archIndex];
@@ -131,19 +130,9 @@ int main() {
     fs::create_directories("dist");
     cout << "📁 Created package directory structure.\n";
 
-    // Step 8: Copy binary safely (fixed logic)
+    // Step 8: Copy binary safely
     fs::path destBinary = fs::path("package/usr/bin") / appName;
-
-    // Ensure parent directories exist
     fs::create_directories(destBinary.parent_path());
-
-    // Debug info
-    cout << "DEBUG: srcPath exists? " << fs::exists(srcPath) << "\n";
-    cout << "DEBUG: srcPath is regular file? " << fs::is_regular_file(srcPath) << "\n";
-    cout << "DEBUG: destBinary parent exists? " << fs::exists(destBinary.parent_path()) << "\n";
-    cout << "DEBUG: destBinary: " << destBinary << "\n";
-
-    // Copy
     fs::copy_file(srcPath, destBinary, fs::copy_options::overwrite_existing);
     cout << "✅ Copied binary to " << destBinary << "\n";
 
@@ -168,3 +157,4 @@ int main() {
 
     return 0;
 }
+
