@@ -95,12 +95,12 @@ int main() {
     }
 
     // Step 2: App name (optional)
-    cout << "Enter app name (leave blank to use binary name): ";
+    cout << "Enter app name : ";
     getline(cin, appNameInput);
     string appName = appNameInput.empty() ? srcPath.filename().string() : appNameInput;
 
     // Step 3: Description
-    cout << "Enter app description (optional): ";
+    cout << "Enter app description : ";
     getline(cin, description);
 
     // Step 4: Architecture
