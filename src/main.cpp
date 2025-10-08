@@ -7,6 +7,8 @@
 #include <vector>
 #include <termios.h>
 #include <unistd.h>
+#include <readline/readline.h>
+#include <readline/history.h>
 
 using namespace std;
 namespace fs = std::filesystem;
@@ -81,12 +83,15 @@ int main() {
     vector<string> archOptions = {"amd64", "arm", "i386"};
 
     // Step 1: Relative file path
-    cout << "Enter relative path to binary (e.g., ../bin/myapp): ";
-    getline(cin, filePath);
-    if (filePath.empty()) {
+    char* input = readline("Enter relative path to binary (e.g., ../bin/myapp): ");
+    if (input == nullptr || strlen(input) == 0) {
         cerr << "❌ File path cannot be empty.\n";
+        if (input) free(input);
         return 1;
     }
+    filePath = input;
+    add_history(input);
+    free(input);
 
     fs::path srcPath = fs::absolute(filePath);
     if (!fs::exists(srcPath) || !fs::is_regular_file(srcPath)) {
