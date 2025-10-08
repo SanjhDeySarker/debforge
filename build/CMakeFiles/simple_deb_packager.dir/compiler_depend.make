@@ -220,6 +220,7 @@ CMakeFiles/simple_deb_packager.dir/src/main.cpp.o: /workspaces/debforge/src/main
   /usr/include/x86_64-linux-gnu/bits/typesizes.h \
   /usr/include/x86_64-linux-gnu/bits/uintn-identity.h \
   /usr/include/x86_64-linux-gnu/bits/unistd_ext.h \
+  /usr/include/x86_64-linux-gnu/bits/utsname.h \
   /usr/include/x86_64-linux-gnu/bits/waitflags.h \
   /usr/include/x86_64-linux-gnu/bits/waitstatus.h \
   /usr/include/x86_64-linux-gnu/bits/wchar.h \
@@ -247,6 +248,7 @@ CMakeFiles/simple_deb_packager.dir/src/main.cpp.o: /workspaces/debforge/src/main
   /usr/include/x86_64-linux-gnu/sys/single_threaded.h \
   /usr/include/x86_64-linux-gnu/sys/ttydefaults.h \
   /usr/include/x86_64-linux-gnu/sys/types.h \
+  /usr/include/x86_64-linux-gnu/sys/utsname.h \
   /usr/lib/gcc/x86_64-linux-gnu/13/include/stdarg.h \
   /usr/lib/gcc/x86_64-linux-gnu/13/include/stddef.h \
   /usr/lib/gcc/x86_64-linux-gnu/13/include/stdint.h
@@ -272,6 +274,8 @@ CMakeFiles/simple_deb_packager.dir/src/main.cpp.o: /workspaces/debforge/src/main
 
 /usr/include/x86_64-linux-gnu/c++/13/bits/c++io.h:
 
+/usr/include/x86_64-linux-gnu/sys/utsname.h:
+
 /usr/include/x86_64-linux-gnu/c++/13/bits/basic_file.h:
 
 /usr/include/x86_64-linux-gnu/sys/ttydefaults.h:
@@ -279,6 +283,8 @@ CMakeFiles/simple_deb_packager.dir/src/main.cpp.o: /workspaces/debforge/src/main
 /usr/include/x86_64-linux-gnu/c++/13/bits/atomic_word.h:
 
 /usr/include/x86_64-linux-gnu/bits/waitstatus.h:
+
+/usr/include/x86_64-linux-gnu/bits/utsname.h:
 
 /usr/include/x86_64-linux-gnu/bits/unistd_ext.h:
 
