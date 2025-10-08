@@ -4,8 +4,12 @@
 #include <unistd.h>
 #include <vector>
 #include <filesystem>
+#include <fstream>
+#include <cstdlib>
 
-// Utility: Read one key press (without pressing Enter)
+using namespace std;
+
+// --- Utility: Read one key press ---
 char getKey() {
     struct termios oldt, newt;
     char ch;
@@ -18,26 +22,26 @@ char getKey() {
     return ch;
 }
 
-// Display a selection menu using arrow keys
-int selectOption(const std::vector<std::string>& options, const std::string& prompt) {
+// --- Menu selection with arrow keys ---
+int selectOption(const vector<string>& options, const string& prompt) {
     int selected = 0;
     char key;
     while (true) {
         system("clear");
-        std::cout << prompt << "\n\n";
+        cout << prompt << "\n\n";
         for (size_t i = 0; i < options.size(); ++i) {
             if ((int)i == selected)
-                std::cout << " 👉 " << options[i] << "\n";
+                cout << " 👉 " << options[i] << "\n";
             else
-                std::cout << "    " << options[i] << "\n";
+                cout << "    " << options[i] << "\n";
         }
 
         key = getKey();
-        if (key == '\033') { // if the first value is esc
-            getchar();       // skip the [
+        if (key == '\033') {
+            getchar(); // skip [
             switch (getchar()) {
-                case 'A': selected = (selected - 1 + options.size()) % options.size(); break; // Up
-                case 'B': selected = (selected + 1) % options.size(); break; // Down
+                case 'A': selected = (selected - 1 + options.size()) % options.size(); break;
+                case 'B': selected = (selected + 1) % options.size(); break;
             }
         } else if (key == '\n') {
             return selected;
@@ -45,47 +49,90 @@ int selectOption(const std::vector<std::string>& options, const std::string& pro
     }
 }
 
+// --- Create control file content ---
+string createControlFile(const string& appName, const string& version,
+                         const string& arch, const string& description) {
+    string control = "Package: " + appName + "\n";
+    control += "Version: " + version + "\n";
+    control += "Section: base\n";
+    control += "Priority: optional\n";
+    control += "Architecture: " + arch + "\n";
+    control += "Maintainer: Unknown <unknown@example.com>\n";
+    control += "Description: " + description + "\n";
+    return control;
+}
+
 int main() {
-    std::string filePath, appName, description, version;
-    std::vector<std::string> archOptions = {"amd64", "arm", "i386"};
+    string filePath, appName, description, version;
+    vector<string> archOptions = {"amd64", "arm", "i386"};
 
-    // 1. Get file path
-    std::cout << "Enter relative path to binary (e.g., ./bin/myapp): ";
-    std::getline(std::cin, filePath);
+    // --- Get Inputs ---
+    cout << "Enter relative path to binary (e.g., ../bin/myapp): ";
+    getline(cin, filePath);
     if (filePath.empty()) {
-        std::cerr << "❌ File path cannot be empty.\n";
+        cerr << "❌ File path cannot be empty.\n";
         return 1;
     }
-    if (std::filesystem::path(filePath).is_absolute()) {
-        std::cerr << "❌ Please provide a relative path, not absolute.\n";
+    if (filesystem::path(filePath).is_absolute()) {
+        cerr << "❌ Please provide a relative path, not absolute.\n";
+        return 1;
+    }
+    if (!filesystem::exists(filePath)) {
+        cerr << "❌ Binary file not found at: " << filePath << "\n";
         return 1;
     }
 
-    // 2. Get app name
-    std::cout << "Enter app name: ";
-    std::getline(std::cin, appName);
+    cout << "Enter app name: ";
+    getline(cin, appName);
 
-    // 3. Get description
-    std::cout << "Enter app description: ";
-    std::getline(std::cin, description);
+    cout << "Enter app description: ";
+    getline(cin, description);
 
-    // 4. Select architecture
     int archIndex = selectOption(archOptions, "Select architecture:");
-    std::string architecture = archOptions[archIndex];
+    string architecture = archOptions[archIndex];
 
-    // 5. Get version
-    std::cout << "\nEnter app version (e.g., 1.0.0): ";
-    std::getline(std::cin, version);
+    cout << "\nEnter app version (e.g., 1.0.0): ";
+    getline(cin, version);
 
-    // Display summary
-    std::cout << "\n✅ Summary:\n";
-    std::cout << "File Path: " << filePath << "\n";
-    std::cout << "App Name: " << appName << "\n";
-    std::cout << "Description: " << description << "\n";
-    std::cout << "Architecture: " << architecture << "\n";
-    std::cout << "Version: " << version << "\n\n";
+    cout << "\n✅ Summary:\n";
+    cout << "File Path: " << filePath << "\n";
+    cout << "App Name: " << appName << "\n";
+    cout << "Description: " << description << "\n";
+    cout << "Architecture: " << architecture << "\n";
+    cout << "Version: " << version << "\n\n";
 
-    std::cout << "🎉 All inputs collected successfully!\n";
+    // --- Step 1: Create directory structure ---
+    filesystem::remove_all("package");
+    filesystem::create_directories("package/usr/bin");
+    filesystem::create_directories("package/DEBIAN");
+    filesystem::create_directories("dist");
+    cout << "📁 Created package directory structure.\n";
+
+    // --- Step 2: Copy binary ---
+    filesystem::path destBinary = "package/usr/bin/" + filesystem::path(appName).filename().string();
+    filesystem::copy_file(filePath, destBinary, filesystem::copy_options::overwrite_existing);
+    cout << "✅ Copied binary into " << destBinary << "\n";
+
+    // --- Step 3: Write control file ---
+    ofstream controlFile("package/DEBIAN/control");
+    controlFile << createControlFile(appName, version, architecture, description);
+    controlFile.close();
+    cout << "✅ Created DEBIAN/control file.\n";
+
+    // --- Step 4: Set permissions ---
+    system("chmod -R 755 package/DEBIAN");
+
+    // --- Step 5: Build .deb package ---
+    string debPath = "dist/" + appName + "_" + version + "_" + architecture + ".deb";
+    string cmd = "dpkg-deb --build package " + debPath;
+
+    cout << "📦 Building .deb package...\n";
+    int result = system(cmd.c_str());
+    if (result == 0) {
+        cout << "✅ Successfully created " << debPath << "\n";
+    } else {
+        cerr << "❌ Failed to build .deb package.\n";
+    }
 
     return 0;
 }

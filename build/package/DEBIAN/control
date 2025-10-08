@@ -1,7 +1,7 @@
-Package: myapp
+Package: MyApp
 Version: 1.0.0
 Section: base
 Priority: optional
 Architecture: amd64
-Maintainer: Your Name <you@example.com>
-Description: A simple example Debian package created from C++
+Maintainer: Unknown <unknown@example.com>
+Description: My interactive deb generator
