@@ -1,7 +1,7 @@
-Package: MyApp
+Package: myapp
 Version: 1.0.0
 Section: base
 Priority: optional
 Architecture: amd64
 Maintainer: Unknown <unknown@example.com>
-Description: My interactive deb generator
+Description: No description provided
